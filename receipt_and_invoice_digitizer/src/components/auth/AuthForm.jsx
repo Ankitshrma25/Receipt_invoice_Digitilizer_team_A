@@ -42,7 +42,12 @@ export default function AuthForm({ mode, setMode }) {
         localStorage.setItem("token",res.access_token);
         localStorage.setItem("role",res.role);
 
-        navigate("/dashboard");
+        // role base redirection
+        if(res.role === "admin"){
+          navigate("/admin");
+        }else{
+          navigate("/dashboard");
+        }
 
       }else{
 

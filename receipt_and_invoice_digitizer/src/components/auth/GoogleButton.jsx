@@ -43,9 +43,13 @@ export default function GoogleButton() {
         })
       );
 
-      // redirect to dashboard
+      // redirect to dashboard based on role
       console.log("Login successful, navigating to dashboard...");
-      navigate("/dashboard");
+      if (res.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/dashboard");
+      }
 
     } catch (err) {
       console.log("Google login error:", err);
@@ -58,7 +62,7 @@ export default function GoogleButton() {
     }
   };
 
-  
+
 
   const handleError = () => {
     setError("Google sign-in was cancelled or failed.");

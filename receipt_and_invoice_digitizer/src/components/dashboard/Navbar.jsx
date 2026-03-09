@@ -28,12 +28,13 @@ export default function Navbar({ user }) {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
     localStorage.removeItem("user");
     navigate("/login", { replace: true });
   };
 
   return (
-    <nav className="bg-gradient-to-r from-indigo-600 via-indigo-500 to-blue-500 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 text-white px-8 py-4 flex justify-between items-center sticky top-0 z-50 shadow-lg transition-all">
+    <nav className="bg-linear-to-r from-indigo-600 via-indigo-500 to-blue-500 dark:from-slate-800 dark:via-slate-700 dark:to-slate-800 text-white px-8 py-4 flex justify-between items-center sticky top-0 z-50 shadow-lg transition-all">
 
       {/* Logo */}
       <div className="flex items-center gap-3">
@@ -48,7 +49,7 @@ export default function Navbar({ user }) {
       {/* Right Section */}
       <div className="flex items-center gap-6">
 
-        {/* 🔔 Notifications */}
+        {/* Notifications */}
         <div className="relative" ref={notifyRef}>
           <Bell
             size={20}
@@ -75,7 +76,7 @@ export default function Navbar({ user }) {
           )}
         </div>
 
-        {/* 👤 Profile */}
+        {/* Profile */}
         <div className="relative" ref={dropdownRef}>
           <div
             className="flex items-center gap-3 cursor-pointer"

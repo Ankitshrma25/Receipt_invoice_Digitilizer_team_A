@@ -2,7 +2,7 @@ export default function AuthHero() {
   return (
     <div className="hidden lg:flex items-center justify-center bg-slate-900 text-white p-10">
 
-      <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-8 w-[420px]">
+      <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-8 w-420px">
 
         <h2 className="text-2xl font-bold mb-4">
           Receipt & Invoice Digitizer

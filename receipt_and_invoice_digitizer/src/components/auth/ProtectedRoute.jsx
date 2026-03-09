@@ -12,5 +12,10 @@ export default function ProtectedRoute({ children, adminOnly = false }) {
     return <Navigate to="/dashboard" replace />;
   }
 
+  // block admin from user pages
+  if (!adminOnly && role === "admin") {
+    return <Navigate to="/admin" replace />;
+  }
+
   return children;
 }

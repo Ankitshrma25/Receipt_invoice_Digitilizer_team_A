@@ -184,9 +184,9 @@ export default function Dashboard() {
       document.documentElement.classList.add("dark");
     }
 
-    const storedUser = localStorage.getItem("user");
+    const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser(storedUser);
     }
   }, []);
 
@@ -227,7 +227,7 @@ export default function Dashboard() {
         : 0;
 
       const newInvoice = {
-        id: Date.now(), // 🔥 Unique ID fix
+        id: Date.now(), //  Unique ID fix
         filename: res.data.filename,
         status: "Processed",
         vendor: extracted.vendor_name || "N/A",

@@ -39,7 +39,12 @@ def login(data: UserLogin, db: Session = Depends(get_db)):
     return {
         "access_token": token,
         "token_type": "bearer",
-        "role": user.role
+        "role": user.role,
+        "user": {
+            "id": user.user_id,
+            "name": user.user_name,
+            "email": user.user_email
+        }
     }
 
 
@@ -89,5 +94,10 @@ def google_login(payload: dict, db: Session = Depends(get_db)):
     return {
         "access_token": access_token,
         "token_type": "bearer",
-        "role": user.role
+        "role": user.role,
+        "user": {
+            "id": user.user_id,
+            "name": user.user_name,
+            "email": user.user_email
+        }
     }

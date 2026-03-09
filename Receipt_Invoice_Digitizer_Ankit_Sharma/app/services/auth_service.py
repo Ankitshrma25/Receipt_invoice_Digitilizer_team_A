@@ -15,7 +15,7 @@ def register_user(db, data):
         user_name=data.user_name,
         user_email=data.user_email,
         user_password=hash_password(data.user_password),
-        role=role  # ← IMPORTANT
+        role=role
     )
 
     return create_user(db, user)

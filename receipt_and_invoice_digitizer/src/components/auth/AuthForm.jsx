@@ -78,12 +78,12 @@ export default function AuthForm({ mode, setMode }) {
       <div className="text-center">
 
         <h1 className="text-2xl font-bold">
-          {mode === "login" ? "Welcome Back" : "Create Account"}
+          {mode === "login" ? "Welcome," : "Create Account"}
         </h1>
 
         <p className="text-muted-foreground text-sm">
           {mode === "login"
-            ? "Login to access your dashboard"
+            ? "Login to continue"
             : "Start digitizing invoices"}
         </p>
 

@@ -1,0 +1,14 @@
+fastapi
+uvicorn[standard]
+pydantic
+
+# authentication
+python-jose[cryptography]
+passlib[bcrypt]
+python-dotenv
+
+# Google OAuth token verification
+google-auth
+
+# database
+sqlalchemy

@@ -13,44 +13,43 @@ export default function AuthForm({ mode, setMode }) {
 
   const navigate = useNavigate();
 
-  const [name,setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [loading,setLoading] = useState(false);
-  const [error,setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = async (e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const validation = schema.safeParse({email,password});
+    const validation = schema.safeParse({ email, password });
 
-    if(!validation.success){
-      setError(validation.error.errors[0].message);
+    if (!validation.success) {
+      setError(validation.error.issues[0].message);
       return;
     }
 
     setLoading(true);
     setError("");
 
-    try{
+    try {
 
-      if(mode === "login"){
+      if (mode === "login") {
 
-        const res = await api.login({email,password});
+        const res = await api.login({ email, password });
 
-        localStorage.setItem("token",res.access_token);
-        localStorage.setItem("role",res.role);
-        localStorage.setItem("user",JSON.stringify(res.user));
+        localStorage.setItem("token", res.access_token);
+        localStorage.setItem("role", res.role);
+        localStorage.setItem("user", JSON.stringify(res.user));
 
-        // role base redirection
-        if(res.role === "admin"){
+        if (res.role === "admin") {
           navigate("/admin");
-        }else{
+        } else {
           navigate("/dashboard");
         }
 
-      }else{
+      } else {
 
         await api.register({
           name,
@@ -59,16 +58,15 @@ export default function AuthForm({ mode, setMode }) {
         });
 
         setMode("login");
-
       }
 
-    }catch(err){
+    } catch (err) {
 
       setError(err?.response?.data?.detail || "Authentication failed");
 
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
@@ -76,7 +74,6 @@ export default function AuthForm({ mode, setMode }) {
     <div className="w-full max-w-md space-y-6">
 
       <div className="text-center">
-
         <h1 className="text-2xl font-bold">
           {mode === "login" ? "Welcome," : "Create Account"}
         </h1>
@@ -86,7 +83,6 @@ export default function AuthForm({ mode, setMode }) {
             ? "Login to continue"
             : "Start digitizing invoices"}
         </p>
-
       </div>
 
       <GoogleButton />
@@ -104,15 +100,16 @@ export default function AuthForm({ mode, setMode }) {
             className="w-full border rounded-md p-2"
             placeholder="Full Name"
             value={name}
-            onChange={(e)=>setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
           />
         )}
 
         <input
+          type="email"
           className="w-full border rounded-md p-2"
           placeholder="Email"
           value={email}
-          onChange={(e)=>setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
@@ -120,7 +117,7 @@ export default function AuthForm({ mode, setMode }) {
           className="w-full border rounded-md p-2"
           placeholder="Password"
           value={password}
-          onChange={(e)=>setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         {error && (
@@ -130,7 +127,9 @@ export default function AuthForm({ mode, setMode }) {
         )}
 
         <button
+          type="submit"
           className="w-full bg-black text-white py-2 rounded-md"
+          disabled={loading}
         >
           {loading ? "Processing..." : mode === "login" ? "Login" : "Register"}
         </button>
@@ -144,7 +143,7 @@ export default function AuthForm({ mode, setMode }) {
           : "Already have an account?"}
 
         <button
-          onClick={()=>setMode(mode === "login" ? "register" : "login")}
+          onClick={() => setMode(mode === "login" ? "register" : "login")}
           className="ml-2 text-blue-500"
         >
           {mode === "login" ? "Register" : "Login"}

@@ -14,14 +14,12 @@
     "axios": "^1.13.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-<<<<<<< HEAD
+
     "framer-motion": "^10.18.0",
-=======
-    "framer-motion": "^12.35.0",
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.0",
     "jspdf-autotable": "^5.0.7",
->>>>>>> origin/receipt-digitize
+
     "lucide-react": "^0.575.0",
     "radix-ui": "^1.4.3",
     "react": "^18.2.0",

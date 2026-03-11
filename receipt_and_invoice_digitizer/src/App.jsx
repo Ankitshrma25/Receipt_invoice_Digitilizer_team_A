@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import AdminLayout from "./components/admin/layout/AdminLayout";
+import Landing from "./pages/Landing";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
       <Routes>
 
         {/* Public routes */}
-        <Route path="/" element={<Auth />} />
+        <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Auth />} />
         <Route path="/register" element={<Auth />} />
 

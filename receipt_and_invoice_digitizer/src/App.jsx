@@ -1,32 +1,34 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Features from "./pages/Features";
-
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import AdminDashboard from "./pages/AdminDashboard";
 import "./App.css";
 import Auth from "./pages/auth/Auth";
-
-import ProtectedRoute from "./components/auth/ProtectedRoute";
-
+import Chatbot from "./components/Chatbot";
 
 function App() {
-
   return (
     <Router>
+
       <Routes>
-        {/* Public routes */}
+
         <Route path="/" element={<Auth />} />
         <Route path="/login" element={<Auth />} />
         <Route path="/register" element={<Auth />} />
 
-        {/* Protected routes */}
-        <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-        <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-        <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-        <Route path="/admin" element={<ProtectedRoute adminOnly={true}><AdminDashboard /></ProtectedRoute>} />
+        {/* Routes without protection */}
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+
       </Routes>
+
+      {/* Chatbot appears on all pages */}
+      <Chatbot />
+
     </Router>
   );
 }

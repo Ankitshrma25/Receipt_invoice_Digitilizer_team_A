@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import AdminLayout from "./components/admin/layout/AdminLayout";
 import Landing from "./pages/Landing";
+import Chatbot from "./components/Chatbot";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
 
       </Routes>
+      <Chatbot />
     </Router>
   );
 }

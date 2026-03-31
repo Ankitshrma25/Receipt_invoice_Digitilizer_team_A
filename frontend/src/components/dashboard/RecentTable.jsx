@@ -47,6 +47,12 @@ import autoTable from "jspdf-autotable";
 
 export default function RecentTable({ files = [] }) {
 
+  // Extract just the filename from path
+  const getFilenameOnly = (filepath) => {
+    if (!filepath) return "";
+    return filepath.split(/[\\/]/).pop();
+  };
+
   // Clean OCR numbers
   const cleanNumber = (value) => {
     if (!value) return 0;
@@ -71,7 +77,7 @@ export default function RecentTable({ files = [] }) {
     pdf.setFontSize(12);
     pdf.text(`Vendor: ${file.vendor}`, 20, 40);
     pdf.text(`Date: ${file.date}`, 20, 48);
-    pdf.text(`File: ${file.filename}`, 20, 56);
+    pdf.text(`File: ${getFilenameOnly(file.filename)}`, 20, 56);
 
     const tableData = [];
 
@@ -141,7 +147,7 @@ export default function RecentTable({ files = [] }) {
       { align: "center" }
     );
 
-    pdf.save(`${file.filename}_digitized_receipt.pdf`);
+    pdf.save(`${getFilenameOnly(file.filename)}_digitized_receipt.pdf`);
   };
 
 
@@ -180,7 +186,7 @@ export default function RecentTable({ files = [] }) {
                 >
 
                   <td className="py-3 pr-4 font-medium">
-                    {file.filename}
+                    {getFilenameOnly(file.filename)}
                   </td>
 
                   <td>{file.vendor}</td>

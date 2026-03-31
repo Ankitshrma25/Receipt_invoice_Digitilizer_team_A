@@ -502,6 +502,17 @@ export default function Dashboard() {
 
         setInvoices(res.data);
 
+        // Populate files with fetched invoices for stats display
+        const invoiceList = res.data.map((inv) => ({
+          id: inv.id,
+          filename: inv.filename || "Unknown",
+          vendor: inv.vendor_name || "N/A",
+          total: inv.total_amount || 0,
+          date: inv.date || "N/A",
+          items: inv.items || []
+        }));
+        setFiles(invoiceList);
+
       } catch (error) {
 
         console.error("Failed to load invoices", error);
